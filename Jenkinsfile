@@ -10,7 +10,7 @@ pipeline {
                 echo "Project has been checked out from Git"
             }
            }
-         stage("build docker") {
+         stage("build docker artifact") {
             customImage = docker.build("marinapre/kandulaApp")
             }  
     }
