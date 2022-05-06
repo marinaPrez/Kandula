@@ -9,8 +9,9 @@ pipeline {
                 checkout scm
                 echo "Project has been checked out from Git"
             }
-          }
+           }
+         stage("build docker") {
+            customImage = docker.build("marinapre/kandulaApp")
+            }  
     }
 }
-
-
