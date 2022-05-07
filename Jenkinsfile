@@ -1,19 +1,18 @@
-pipeline {
-    agent { label 'docker_node'}
-    triggers {
-       githubPush()
+node("node1") {
+    customImage = ""
+    stage("git checkout"){
+        checkout scm
     }
-    stages {
-        stage('Checkout Project from Github') {
-            steps {
-                checkout scm
-                echo "Project has been checked out from Git"
-                sh "echo whoami"
-            }
-          }
-        stage("build docker") {
-          steps { 
-                  script {    customImage = docker.build("marinapre/kandulapp")}
-           } } 
+    stage("build docker") {
+        customImage = docker.build("kandula-app")
+    }
+    stage("verify dockers") {
+      sh "docker images"
+    }
+    stage("push to registry"){
+    withDockerRegistry(credentialsId: '5f37e4d2-30ef-43cc-83eb-5fffb84a4876') {
+    customImage.push()
+   }
     }
 }
+
