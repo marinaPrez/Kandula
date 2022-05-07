@@ -13,7 +13,7 @@ pipeline {
           }
         stage("build docker") {
           steps { 
-                  script {    customImage = docker.build("marinapre/kandulaApp")}
+                  script {    customImage = docker.build("marinapre/kandulapp")}
            } } 
     }
 }
