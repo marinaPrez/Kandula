@@ -1,5 +1,4 @@
 pipeline {
-    #agent any
     agent { label 'docker_node'}
     triggers {
        githubPush()
