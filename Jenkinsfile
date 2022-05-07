@@ -8,7 +8,7 @@ pipeline {
             steps {
                 checkout scm
                 echo "Project has been checked out from Git"
-                echo whoami
+                sh "echo whoami"
             }
           }
         stage("build docker") {
