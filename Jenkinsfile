@@ -4,7 +4,7 @@ node("node1") {
         checkout scm
     }
     stage("build docker") {
-        customImage = docker.build("kandula-app")
+        customImage = docker.build("kandula")
     }
     stage("verify dockers") {
       sh "docker images"
