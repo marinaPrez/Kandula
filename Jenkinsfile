@@ -4,7 +4,7 @@ node("node1") {
         checkout scm
     }
     stage("build docker") {
-        customImage = docker.build("kandula")
+        customImage = docker.build("marinapre/kandula")
     }
     stage("verify dockers") {
       sh "docker images"
