@@ -1,8 +1,5 @@
 node("node1") {
     customImage = ""
-      triggers {
-       githubPush()
-               }
     stage("git checkout"){
         checkout scm
     }
