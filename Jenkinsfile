@@ -18,7 +18,7 @@ node("node1") {
          }
     }
    stage ("deploy to K8S"){
-            sh (whoami)  
+            sh ("whoami")  
            }
 }
 
