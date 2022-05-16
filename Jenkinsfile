@@ -1,7 +1,9 @@
 node("node1") {
     customImage = ""
     stage("git checkout"){
-        checkout scm
+         echo "Triggering Deployment, got notification from Github"
+         echo "###################################################" 
+         checkout scm
     }
     stage("build docker") {
         customImage = docker.build("marinapre/kandula")

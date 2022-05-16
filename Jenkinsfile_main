@@ -7,7 +7,7 @@ pipeline {
         stage('Checkout Project from Github') {
             steps {
                
-                echo "hiiiii"
+                echo "Triggering Deployment, got notification from Github"
             }
           }
         stage ('Deploy Kandula Application') {
