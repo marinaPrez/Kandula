@@ -17,5 +17,8 @@ node("node1") {
         customImage.push()
          }
     }
+   stage ("deploy to K8S"){
+            sh (whoami)  
+           }
 }
 
