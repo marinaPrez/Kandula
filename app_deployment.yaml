@@ -39,8 +39,8 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: aws_secret
+  name: aws_credentials
 type: Opaque
 data:
-  username: QUtJQTZKQU9BU09NUUdXTlBINEI
-  password: S0J2K1R4TW1QZGJZcEplZ0Qvekp4VFMvR3M0VEgzM3pzUFYyT2Fxdw==
+  id: QUtJQTZKQU9BU09NUUdXTlBINEI
+  key: S0J2K1R4TW1QZGJZcEplZ0Qvekp4VFMvR3M0VEgzM3pzUFYyT2Fxdw==
