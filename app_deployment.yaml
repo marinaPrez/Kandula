@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opsschool-app-marina
+  annotations:
+    kubernetes.io/change-cause: "First release kuard-amd64:1"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: opsschool-app-marina
+  template:
+    metadata:
+      labels:
+        app: opsschool-app-marina
+    spec:
+      containers:
+      - name: opsschool-app-marina
+        image: marinapre/kandula:latest
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kandula-service-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: opsschool-app-marina
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

@@ -1,5 +1,8 @@
 node("node1") {
     customImage = ""
+      triggers {
+       githubPush()
+               }
     stage("git checkout"){
         checkout scm
     }
@@ -10,9 +13,10 @@ node("node1") {
       sh "docker images"
     }
     stage("push to registry"){
-    withDockerRegistry(credentialsId: '125075c2-3206-43a3-88cb-364fa0691ba3') {
-    customImage.push()
-   }
+      withDockerRegistry(credentialsId: '125075c2-3206-43a3-88cb-364fa0691ba3') {
+        customImage.push()
+         }
     }
+
 }
 
