@@ -10,7 +10,7 @@ node("node1") {
       sh "docker images"
     }
     stage("push to registry"){
-    withDockerRegistry(credentialsId: '7bcacd66-7e09-40e5-a59b-5b505e0b82d7') {
+    withDockerRegistry(credentialsId: '125075c2-3206-43a3-88cb-364fa0691ba3') {
     customImage.push()
    }
     }
