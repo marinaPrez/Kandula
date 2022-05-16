@@ -35,3 +35,12 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aws_secret
+type: Opaque
+data:
+  username: QUtJQTZKQU9BU09NUUdXTlBINEI
+  password: S0J2K1R4TW1QZGJZcEplZ0Qvekp4VFMvR3M0VEgzM3pzUFYyT2Fxdw==
