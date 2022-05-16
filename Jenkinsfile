@@ -1,6 +1,7 @@
 node("node1") {
     customImage = ""
     stage("git checkout"){
+         echo "###################################################"
          echo "Triggering Deployment, got notification from Github"
          echo "###################################################" 
          checkout scm
