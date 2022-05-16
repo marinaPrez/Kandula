@@ -10,5 +10,8 @@ pipeline {
                 echo "hiiiii"
             }
           }
+        stage ('Deploy Kandula Application') {
+           build job: 'deploy_kandulla'
+            }
        }
   }
