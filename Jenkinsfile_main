@@ -11,7 +11,9 @@ pipeline {
             }
           }
         stage ('Deploy Kandula Application') {
-           build job: 'deploy_kandulla'
+            steps {
+              build job: 'deploy_kandulla'
+              }
             }
        }
   }
