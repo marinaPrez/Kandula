@@ -8,4 +8,6 @@ WORKDIR /kandula
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
+ENV FLASK_ENV=development
+
 CMD ["/bin/bash", "bin/run"]
