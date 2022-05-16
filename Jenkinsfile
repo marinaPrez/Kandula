@@ -18,7 +18,7 @@ node("node1") {
          }
     }
    stage ("deploy to K8S"){
-            sh ("kubectl apply -f app_deployment.yaml")  
+            sh ("pwd;  kubectl apply -f app_deployment.yaml")  
            }
    }
 
