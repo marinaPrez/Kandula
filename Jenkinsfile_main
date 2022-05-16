@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    triggers {
+       githubPush()
+    }
+    stages {
+        stage('Checkout Project from Github') {
+            steps {
+               
+                echo "hiiiii"
+            }
+          }
+    }
+}
