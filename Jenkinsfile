@@ -13,7 +13,7 @@ node("node1") {
       sh "docker images"
     }
     stage("push to registry"){
-      withDockerRegistry(credentialsId: '125075c2-3206-43a3-88cb-364fa0691ba3') {
+      withDockerRegistry(credentialsId: 'dockerhub-cred') {
         customImage.push()
          }
     }
