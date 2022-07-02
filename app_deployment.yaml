@@ -19,9 +19,12 @@ spec:
         image: marinapre/kandula:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+        envFrom:
+          - secretRef:
+            name: aws-credentials  
 ---
 apiVersion: v1
 kind: Service
