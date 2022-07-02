@@ -19,12 +19,15 @@ spec:
         image: marinapre/kandula:latest
         imagePullPolicy: Always
         ports:
-          - containerPort: 8080
+          - containerPort: 5000
             name: http
             protocol: TCP
+        env:
+          - name: AWS_DEFAULT_REGION
+            value: us-west-2    
         envFrom:
           - secretRef:
-            name: aws-credentials  
+              name: aws-credentials  
 ---
 apiVersion: v1
 kind: Service
@@ -36,14 +39,5 @@ spec:
     app: opsschool-app-marina
   ports:
     - protocol: TCP
-      port: 5000
+      port: 80
       targetPort: 5000
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aws-credentials
-type: Opaque
-data:
-  AWS_ACCESS_KEY_ID: QUtJQTZDUVRIVkJIWUZDRlJWUjM=
-  AWS_SECRET_ACCESS_KEY: bEFqUTNmTlU3dnAyUGVycXhIQlBVelZJY1lFYmtpakdPcWU4MUpEbg==
