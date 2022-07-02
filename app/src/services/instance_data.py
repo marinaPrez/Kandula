@@ -60,8 +60,49 @@ class InstanceData:
         #       NOTE: the `self.ec2_client` is an object that is returned from doing `boto3.client('ec2')` as you can
         #       probably find in many examples on the web
         #       To read more on how to use Boto for EC2 look for the original Boto documentation
-        my_instances = self.ec2_client.describe_instances()
+        response = self.ec2_client.describe_instances()
+        # response = ec2.describe_instances()
+        response_list = response['Reservations']
+        all_instances_list = []
+        for each_response in response_list:
+            instance_dict = {}
+            instance = each_response['Instances'][0]
 
-        # blaaaaaaa
-        
+            instance_dict['Cloud'] = 'aws',
+            instance_dict['Region'] = instance['Placement']['AvailabilityZone']
+            instance_dict['Id'] = instance['InstanceId']
+            instance_dict['Type'] = instance['InstanceType']
+            instance_dict['ImageId'] = instance['ImageId']
+            instance_dict['LaunchTime'] = instance['LaunchTime']
+            instance_dict['State'] = instance['State']['Name']
+            if instance['State']['Name'] == 'running':
+                instance_dict['StateReason'] = ''
+            else:
+                instance_dict['StateReason'] = instance['StateReason']
+            instance_dict['SubnetId'] = instance['SubnetId']
+            instance_dict['VpcId'] = instance['VpcId']
+            instance_dict['MacAddress'] = instance['NetworkInterfaces'][0]['MacAddress']
+            instance_dict['NetworkInterfaceId'] = instance['NetworkInterfaces'][0]['NetworkInterfaceId']
+            instance_dict['PrivateDnsName'] = instance['PrivateDnsName']
+            instance_dict['PrivateIpAddress'] = instance['PrivateIpAddress']
+            instance_dict['PublicDnsName'] = instance['PublicDnsName']
+            try:
+                instance_dict['PublicIpAddress'] = instance['PublicIpAddress']
+            except:
+                instance_dict['PublicIpAddress'] = ''
+            instance_dict['RootDeviceName'] = instance['RootDeviceName']
+            instance_dict['RootDeviceType'] = instance['RootDeviceType']
+            instance_dict['SecurityGroups'] = instance['SecurityGroups']
+            try:
+                instance_dict['Tags'] = instance['Tags']
+            except:
+                instance_dict['Tags'] = ''
+
+            all_instances_list.append(instance_dict)
+        my_instances = {}
+        my_instances['Instances'] = all_instances_list
+
         return my_instances
+        # return SAMPLE_INSTANCE_DATA
+
+instances_response = instance_data.get_instances()
