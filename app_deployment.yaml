@@ -39,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: aws_credentials
+  name: aws-credentials
 type: Opaque
 data:
   id: QUtJQTZDUVRIVkJIWUZDRlJWUjM=
