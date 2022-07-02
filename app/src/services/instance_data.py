@@ -102,7 +102,7 @@ class InstanceData:
         my_instances = {}
         my_instances['Instances'] = all_instances_list
 
-        # return my_instances
-        return SAMPLE_INSTANCE_DATA
+        return my_instances
+        # return SAMPLE_INSTANCE_DATA
 
 

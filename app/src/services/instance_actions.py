@@ -6,24 +6,24 @@ class InstanceActions:
         self.ec2_client = ec2_client
 
     def start_instance(self, instance_id):
-        # TODO: Implement 'start instance' logic here using `self.ec2_client` as your boto client
-        #       the `self.ec2_client` is an object that is returned from doing `boto3.client('ec2')` as you can
+        # TODO: Implement 'start instance' logic here using `self.ec2_client` as your  client
+        #       the `self.ec2_client` is an object that is returned from doing `3.client('ec2')` as you can
         #       probably find in many examples on the web
-        #       To read more on how to use Boto for EC2 look for the original Boto documentation
+        #       To read more on how to use  for EC2 look for the original  documentation
         pass
 
     def stop_instance(self, instance_id):
-        # TODO: Implement 'stop_instance' logic here using `self.ec2_client` as your boto client
-        #       the `self.ec2_client` is an object that is returned from doing `boto3.client('ec2')` as you can
+        # TODO: Implement 'stop_instance' logic here using `self.ec2_client` as your  client
+        #       the `self.ec2_client` is an object that is returned from doing `3.client('ec2')` as you can
         #       probably find in many examples on the web
-        #       To read more on how to use Boto for EC2 look for the original Boto documentation
+        #       To read more on how to use  for EC2 look for the original  documentation
         pass
 
     def terminate_instance(self, instance_id):
-        # TODO: Implement 'terminate_instance' logic here using `self.ec2_client` as your boto client
-        #       the `self.ec2_client` is an object that is returned from doing `boto3.client('ec2')` as you can
+        # TODO: Implement 'terminate_instance' logic here using `self.ec2_client` as your  client
+        #       the `self.ec2_client` is an object that is returned from doing `3.client('ec2')` as you can
         #       probably find in many examples on the web
-        #       To read more on how to use Boto for EC2 look for the original Boto documentation
+        #       To read more on how to use  for EC2 look for the original  documentation
         pass
 
     def action_selector(self, instance_action):
