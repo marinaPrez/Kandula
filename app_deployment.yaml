@@ -42,5 +42,5 @@ metadata:
   name: aws-credentials
 type: Opaque
 data:
-  id: QUtJQTZDUVRIVkJIWUZDRlJWUjM=
-  key: bEFqUTNmTlU3dnAyUGVycXhIQlBVelZJY1lFYmtpakdPcWU4MUpEbg==
+  AWS_ACCESS_KEY_ID: QUtJQTZDUVRIVkJIWUZDRlJWUjM=
+  AWS_SECRET_ACCESS_KEY: bEFqUTNmTlU3dnAyUGVycXhIQlBVelZJY1lFYmtpakdPcWU4MUpEbg==
