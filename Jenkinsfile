@@ -7,6 +7,7 @@ node("node1") {
          checkout scm
       }
     stage("build docker") {
+        sh ("whoami;" ) 
         customImage = docker.build("marinapre/kandula")
     }
     stage("verify dockers") {
