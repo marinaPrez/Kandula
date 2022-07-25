@@ -33,18 +33,18 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kandula-service-loadbalancer
-  # annotations:
-  #       service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
-  #       service.beta.kubernetes.io/do-loadbalancer-algorithm: "round_robin"
-  #       service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-  #       service.beta.kubernetes.io/do-loadbalancer-certificate-id: "cc4d4a85-977f-49eb-bef9-b04d7d255938"
-  #       service.beta.kubernetes.io/do-loadbalancer-hostname: "kandula.ops.club"
-  #       service.beta.kubernetes.io/do-loadbalancer-http2-ports: 443,80
-  #       service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-west-2:967481731151:certificate/4a0f6bb5-2409-42e6-a713-82cb75f1f081"
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:967481731151:certificate/4a0f6bb5-2409-42e6-a713-82cb75f1f081
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"      
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+    service.beta.kubernetes.io/do-loadbalancer-algorithm: "round_robin"
+    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "4a0f6bb5-2409-42e6-a713-82cb75f1f081"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "kandula.ops.prezhevalsky.com"
+    service.beta.kubernetes.io/do-loadbalancer-http2-ports: 443,80
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-west-2:967481731151:certificate/4a0f6bb5-2409-42e6-a713-82cb75f1f081"
+  # annotations:
+  #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+  #   service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:967481731151:certificate/4a0f6bb5-2409-42e6-a713-82cb75f1f081
+  #   service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"      
 spec:
   type: LoadBalancer
   selector:
