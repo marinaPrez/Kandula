@@ -69,7 +69,8 @@ class InstanceData:
             instance = each_response['Instances'][0]
 
             instance_dict['Cloud'] = 'aws',
-            instance_dict['Region'] = instance['Placement']['AvailabilityZone']
+            #instance_dict['Region'] = instance['Placement']['AvailabilityZone']
+            instance_dict['Region'] =  self.ec2_client.meta.region_name,
             instance_dict['Id'] = instance['InstanceId']
             instance_dict['Type'] = instance['InstanceType']
             instance_dict['ImageId'] = instance['ImageId']
