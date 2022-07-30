@@ -1,31 +1,32 @@
 from boto3 import client
-
+import logging
 
 class InstanceActions:
     def __init__(self, ec2_client: client):
         self.ec2_client = ec2_client
 
     def start_instance(self, instance_id):
-        # TODO: Implement 'start instance' logic here using `self.ec2_client` as your  client
-        #       the `self.ec2_client` is an object that is returned from doing `3.client('ec2')` as you can
-        #       probably find in many examples on the web
-        #       To read more on how to use  for EC2 look for the original  documentation
-        pass
+        try:
+            self.ec2_client.start_instances(
+                InstanceIds=[str(instance_id)])
+        except Exception as e:
+            logging.exception(e)
 
     def stop_instance(self, instance_id):
-        # TODO: Implement 'stop_instance' logic here using `self.ec2_client` as your  client
-        #       the `self.ec2_client` is an object that is returned from doing `3.client('ec2')` as you can
-        #       probably find in many examples on the web
-        #       To read more on how to use  for EC2 look for the original  documentation
-        pass
+        try:
+            self.ec2_client.stop_instances(
+                InstanceIds=[str(instance_id)])
+        except Exception as e:
+            logging.exception(e)
+        
 
     def terminate_instance(self, instance_id):
-        # TODO: Implement 'terminate_instance' logic here using `self.ec2_client` as your  client
-        #       the `self.ec2_client` is an object that is returned from doing `3.client('ec2')` as you can
-        #       probably find in many examples on the web
-        #       To read more on how to use  for EC2 look for the original  documentation
-        pass
-
+        try:
+            self.ec2_client.terminate_instances(
+                InstanceIds=[str(instance_id)])
+        except Exception as e:
+            logging.exception(e)
+     
     def action_selector(self, instance_action):
         return {
             'start': self.start_instance,
