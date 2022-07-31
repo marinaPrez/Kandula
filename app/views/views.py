@@ -16,7 +16,7 @@ import time
 logger = logging.getLogger()
 
 
-LATENCY = Summary('kandula_page_latency_seconds', 'Time to serve a web page')
+LATENCY = Summary('kandula_page_latency_seconds', 'Time to serve a web page', ["method"])
 PAGE_VISITS = Counter('kandula_monitor_page_count', 'Number of visits per-page', ["endpoint"])
 
 
