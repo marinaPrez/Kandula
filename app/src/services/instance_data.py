@@ -50,16 +50,7 @@ class InstanceData:
         self.ec2_client = ec2_client
 
     def get_instances(self):
-        # TODO: The below JSON should be populated using real instance data (instead of the SAMPLE_INSTANCE_DATA)
-        #       The format of SAMPLE_INSTANCE_DATA (field names and JSON structure)
-        #       must be kept in order to be properly displayed in the application UI
-        #
-        #       Notice that when the machine is running the "StateReason" filed should be set to None
-        #       and will not be shown in the UI
-        #
-        #       NOTE: the `self.ec2_client` is an object that is returned from doing `boto3.client('ec2')` as you can
-        #       probably find in many examples on the web
-        #       To read more on how to use Boto for EC2 look for the original Boto documentation
+       
         response = self.ec2_client.describe_instances()
         # response = ec2.describe_instances()
         response_list = response['Reservations']
@@ -68,9 +59,9 @@ class InstanceData:
             instance_dict = {}
             instance = each_response['Instances'][0]
 
-            instance_dict['Cloud'] = 'aws',
+            instance_dict['Cloud'] = 'aws'
             #instance_dict['Region'] = instance['Placement']['AvailabilityZone']
-            instance_dict['Region'] =  self.ec2_client.meta.region_name,
+            instance_dict['Region'] =  self.ec2_client.meta.region_name
             instance_dict['Id'] = instance['InstanceId']
             instance_dict['Type'] = instance['InstanceType']
             instance_dict['ImageId'] = instance['ImageId']

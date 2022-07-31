@@ -1,6 +1,6 @@
 import boto3
 from botocore.config import Config
-
+import logging
 
 my_config = Config(
     region_name = 'us-west-2',
@@ -18,7 +18,8 @@ def check_aws_connection():
     try:
         response = ec2.describe_instances()
         return True
-    except:
+    except Exception as e:
+        logging.exception(e)
         return False
 
 
