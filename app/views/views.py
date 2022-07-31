@@ -11,11 +11,12 @@ from botocore.exceptions import ClientError
 from flask.views import MethodView
 from prometheus_client import Counter, Summary, generate_latest, REGISTRY, PROCESS_COLLECTOR, PLATFORM_COLLECTOR, Gauge
 import logging
+import time
 
 logger = logging.getLogger()
 
 
-REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+LATENCY = Summary('kandula_page_latency_seconds', 'Time to serve a web page')
 PAGE_VISITS = Counter('kandula_monitor_page_count', 'Number of visits per-page', ["endpoint"])
 
 
@@ -48,21 +49,30 @@ class InstanceAPI(MethodView):
 
         return redirect(url_for('instances'))
 
-@REQUEST_TIME.time()
+
 def home():
+    PAGE_VISITS.labels(endpoint='about').inc()
+    time_request = time.time()
     logger.info("Home view")
+    time_response = time.time()
+    LATENCY.labels(method='home').observe(time_response - time_request)
     return render_template('home.html', title='Welcome to Kandula')
 
 
 def about():
     PAGE_VISITS.labels(endpoint='about').inc()
+    time_request = time.time()
+    time_response = time.time()
+    LATENCY.labels(method='about').observe(time_response - time_request)
     return render_template('about.html', title='About')
 
 
 def health():
     PAGE_VISITS.labels(endpoint='health').inc()
+    time_request = time.time()
     health_metrics, is_app_healthy = app_health.get_app_health()
-
+    time_response = time.time()
+    LATENCY.labels(method='health').observe(time_response - time_request)
     return render_template('health.html', title='Application Health',
                            healthchecks=health_metrics), 200 if is_app_healthy else 500
 
@@ -76,16 +86,21 @@ def metrics():
 @inject
 def instances(instance_data: InstanceData = Provide[Container.instance_data]):
     PAGE_VISITS.labels(endpoint='instances').inc()
+    time_request = time.time()
     instances_response = instance_data.get_instances()
+    time_response = time.time()
+    LATENCY.labels(method='instances').observe(time_response - time_request)
     return render_template('instances.html', title='Instances',
                            instances=instances_response['Instances'])
 
 
 def scheduler():
     PAGE_VISITS.labels(endpoint='scheduler').inc()
+    time_request = time.time()
     if request.method == 'POST':
         instance_shutdown_scheduling.handle_instance(request.form)
-
     scheduled_instances = instance_shutdown_scheduling.get_scheduled_instances()
+    time_response = time.time()
+    LATENCY.labels(method='scheduler').observe(time_response - time_request)
     return render_template('scheduler.html', title='Scheduling',
                            scheduled_instances=scheduled_instances["Instances"])
