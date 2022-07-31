@@ -15,6 +15,9 @@ import logging
 logger = logging.getLogger()
 
 
+REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+
+
 class InstanceAPI(MethodView):
     @inject
     def __init__(self, instance_actions: InstanceActions = Provide[Container.instance_actions]) -> None:
@@ -43,7 +46,7 @@ class InstanceAPI(MethodView):
 
         return redirect(url_for('instances'))
 
-
+@REQUEST_TIME.time()
 def home():
     logger.info("Home view")
     return render_template('home.html', title='Welcome to Kandula')
