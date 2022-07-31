@@ -15,7 +15,7 @@ import logging
 logger = logging.getLogger()
 
 
-REQUEST_TIME = Summary('kandula_request_processing_seconds', 'Time spent processing request')
+REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 PAGE_VISITS = Counter('kandula_monitor_page_count', 'Number of visits per-page', ["endpoint"])
 # REQUESTS = Counter('server_requests_total', 'Total number of requests to this webserver')
 
