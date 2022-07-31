@@ -79,6 +79,9 @@ def health():
 
 def metrics():
     PAGE_VISITS.labels(endpoint='metrics').inc()
+    time_request = time.time()
+    time_response = time.time()
+    LATENCY.labels(method='about').observe(time_response - time_request)
     return generate_latest()
     # return render_template('metrics.html', title='metrics', )
 
