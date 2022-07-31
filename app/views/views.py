@@ -15,7 +15,9 @@ import logging
 logger = logging.getLogger()
 
 
-REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+REQUEST_TIME = Summary('kandula_request_processing_seconds', 'Time spent processing request')
+PAGE_VISITS = Counter('kandula_monitor_page_count', 'Number of visits per-page', ["endpoint"])
+# REQUESTS = Counter('server_requests_total', 'Total number of requests to this webserver')
 
 
 class InstanceAPI(MethodView):
@@ -53,10 +55,12 @@ def home():
 
 
 def about():
+    PAGE_VISITS.labels(endpoint='home').inc()
     return render_template('about.html', title='About')
 
 
 def health():
+    PAGE_VISITS.labels(endpoint='home').inc()
     health_metrics, is_app_healthy = app_health.get_app_health()
 
     return render_template('health.html', title='Application Health',
