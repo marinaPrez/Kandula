@@ -17,7 +17,7 @@ logger = logging.getLogger()
 
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 PAGE_VISITS = Counter('kandula_monitor_page_count', 'Number of visits per-page', ["endpoint"])
-# REQUESTS = Counter('server_requests_total', 'Total number of requests to this webserver')
+
 
 
 class InstanceAPI(MethodView):
@@ -55,12 +55,12 @@ def home():
 
 
 def about():
-    PAGE_VISITS.labels(endpoint='home').inc()
+    PAGE_VISITS.labels(endpoint='about').inc()
     return render_template('about.html', title='About')
 
 
 def health():
-    PAGE_VISITS.labels(endpoint='home').inc()
+    PAGE_VISITS.labels(endpoint='health').inc()
     health_metrics, is_app_healthy = app_health.get_app_health()
 
     return render_template('health.html', title='Application Health',
@@ -68,18 +68,21 @@ def health():
 
 
 def metrics():
+    PAGE_VISITS.labels(endpoint='metrics').inc()
     return generate_latest()
     # return render_template('metrics.html', title='metrics', )
 
 
 @inject
 def instances(instance_data: InstanceData = Provide[Container.instance_data]):
+    PAGE_VISITS.labels(endpoint='instances').inc()
     instances_response = instance_data.get_instances()
     return render_template('instances.html', title='Instances',
                            instances=instances_response['Instances'])
 
 
 def scheduler():
+    PAGE_VISITS.labels(endpoint='scheduler').inc()
     if request.method == 'POST':
         instance_shutdown_scheduling.handle_instance(request.form)
 
