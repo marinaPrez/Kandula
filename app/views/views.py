@@ -51,7 +51,7 @@ class InstanceAPI(MethodView):
 
 
 def home():
-    PAGE_VISITS.labels(endpoint='about').inc()
+    PAGE_VISITS.labels(endpoint='home').inc()
     time_request = time.time()
     logger.info("Home view")
     time_response = time.time()
@@ -81,7 +81,7 @@ def metrics():
     PAGE_VISITS.labels(endpoint='metrics').inc()
     time_request = time.time()
     time_response = time.time()
-    LATENCY.labels(method='about').observe(time_response - time_request)
+    LATENCY.labels(method='metrics').observe(time_response - time_request)
     return generate_latest()
     # return render_template('metrics.html', title='metrics', )
 
