@@ -60,8 +60,8 @@ def health():
                            healthchecks=health_metrics), 200 if is_app_healthy else 500
 
 
-def metrics():
-    return render_template('metrics.html', title='metrics', )
+# def metrics():
+#     return render_template('metrics.html', title='metrics', )
 
 
 @inject

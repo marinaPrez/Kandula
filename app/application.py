@@ -27,7 +27,7 @@ def create_app() -> Flask:
     app.add_url_rule('/', 'home', views.home, methods=['GET'])
     app.add_url_rule('/home', 'home', views.home, methods=['GET'])
     app.add_url_rule('/scheduler', 'scheduler', views.scheduler, methods=['GET', 'POST'])
-    app.add_url_rule('/metrics', 'metrics', views.metrics, methods=['GET'])
+    #app.add_url_rule('/metrics', 'metrics', views.metrics, methods=['GET'])
     app.add_url_rule('/about', 'about', views.about, methods=['GET'])
     app.add_url_rule('/health', 'health', views.health, methods=['GET'])
     app.add_url_rule('/instances', 'instances', views.instances, methods=['GET'])
