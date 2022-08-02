@@ -19,7 +19,7 @@ node("node1") {
          }
     }
    stage ("deploy to K8S"){
-            sh ("kubectl apply -f mysecret.yaml;  kubectl apply -f app_deployment.yaml; kubectl rollout restart deployment opsschool-app-marina")  
+            sh ("kubectl apply -f app_deployment.yaml; kubectl rollout restart deployment opsschool-app-marina")  
            }
    }
 
