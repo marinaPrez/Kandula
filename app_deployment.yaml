@@ -40,7 +40,7 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-certificate-id: "4a0f6bb5-2409-42e6-a713-82cb75f1f081"
     service.beta.kubernetes.io/do-loadbalancer-hostname: "kandula.ops.prezhevalsky.com"
     service.beta.kubernetes.io/do-loadbalancer-http2-ports: 443,80
-    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-west-2:967481731151:certificate/4a0f6bb5-2409-42e6-a713-82cb75f1f081"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-east-2:264772297631:certificate/a6d23e9f-b4f5-4dcc-9f0d-a18972b943ef"
   # annotations:
   #   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
   #   service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-west-2:967481731151:certificate/4a0f6bb5-2409-42e6-a713-82cb75f1f081
