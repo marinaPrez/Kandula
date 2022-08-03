@@ -12,7 +12,7 @@ node("node1") {
     }
     stage("verify dockers") {
       sh "docker images"
-      sh "trivy image --timeout 5m --severity CRITICAL,HIGH ${customImage}" 
+      sh "trivy image --timeout 5m --severity CRITICAL,HIGH marinapre/kandula:latest" 
     }
     stage("push to registry"){
       withDockerRegistry(credentialsId: 'dockerhub-cred') {
